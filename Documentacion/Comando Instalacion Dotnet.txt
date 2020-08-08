@@ -1,0 +1,4 @@
+-- Comando para instalar la funcionalidad de Dotnet desde consola de comandos
+
+
+dotnet tool install --global dotnet-ef
