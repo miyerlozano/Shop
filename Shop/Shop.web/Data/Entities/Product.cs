@@ -2,7 +2,8 @@
 
 namespace Shop.web.Data.Entities
 {
-	using System;
+    using Microsoft.CodeAnalysis.Operations;
+    using System;
 	using System.ComponentModel.DataAnnotations;
 
 	public class Product:IEntity
@@ -33,6 +34,22 @@ namespace Shop.web.Data.Entities
 
 
         public User User { get; set; }
+
+		public string ImageFullPath {
+			get
+			{ 
+			
+				if(string.IsNullOrEmpty(this.ImageUrl))
+                {
+
+					return null;
+                }
+
+				return $"https://shopextreme.azurewebsites.net{this.ImageUrl.Substring(1)}";
+
+			}
+		
+		}
 
     }
 

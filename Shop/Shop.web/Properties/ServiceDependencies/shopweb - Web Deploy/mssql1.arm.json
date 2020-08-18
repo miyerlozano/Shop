@@ -4,7 +4,7 @@
   "parameters": {
     "resourceGroupName": {
       "type": "string",
-      "defaultValue": "learn-1f03eb6c-6261-4cf9-851d-634d94f17164",
+      "defaultValue": "learn-9d749c69-ea17-4c8c-9b21-3a4ca3329dfd",
       "metadata": {
         "_parameterType": "resourceGroup",
         "description": "Name of the resource group for the resource. It is recommended to put resources under same resource group for better tracking."
