@@ -45,7 +45,7 @@ namespace Shop.web.Data.Entities
 					return null;
                 }
 
-				return $"https://shopextreme.azurewebsites.net{this.ImageUrl.Substring(1)}";
+				return $"https://shopweb.azurewebsites.net{this.ImageUrl.Substring(1)}";
 
 			}
 		

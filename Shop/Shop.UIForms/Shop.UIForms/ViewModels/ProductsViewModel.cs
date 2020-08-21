@@ -10,7 +10,7 @@ namespace Shop.UIForms.ViewModels
 {
     public class ProductsViewModel: BaseViewModel
     {
-        private ApiService apiservice;
+        private ApiService apiService;
         private ObservableCollection<Product> products;
 
         public ObservableCollection<Product> Products
@@ -22,13 +22,13 @@ namespace Shop.UIForms.ViewModels
 
         public ProductsViewModel()
         {
-            this.apiservice = new ApiService();
+            this.apiService = new ApiService();
             this.LoadProducts();
         }
 
         private async void LoadProducts()
         {
-            var response = await this.apiservice.GetListAsync<Product>("https://shopweb.azurewebsites.net", "/api", "/Products");
+            var response = await this.apiService.GetListAsync<Product>("https://shopweb.azurewebsites.net", "/api", "/Products");
 
             if(!response.IsSuccess)
             {
@@ -37,9 +37,9 @@ namespace Shop.UIForms.ViewModels
 
             }
 
-            var myProducts = (List<Product>)response.Result;
+            var myproducts = (List<Product>)response.Result;
 
-            this.Products = new ObservableCollection<Product>(myProducts);
+            this.Products = new ObservableCollection<Product>(myproducts);
 
         }
     }
