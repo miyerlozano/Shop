@@ -37,7 +37,7 @@ namespace Shop.UIForms.ViewModels
         {
             this.IsRefreshing = true;
 
-            var response = await this.apiService.GetListAsync<Product>("https://shopweb.azurewebsites.net", "/api", "/Products");
+            var response = await this.apiService.GetListAsync<Product>("https://shopweb20.azurewebsites.net", "/api", "/Products");
 
             this.IsRefreshing = false;
 
