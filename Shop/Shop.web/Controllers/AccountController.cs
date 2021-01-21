@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Shop.web.Data;
 using Shop.web.Data.Entities;
 using Shop.web.Helpers;
 using Shop.web.Models;
@@ -18,18 +19,18 @@ namespace Shop.web.Controllers
     public class AccountController:Controller
     {
         private readonly IUserHelper userHelper;
+        private readonly ICountryRepository countryRepository;
         private readonly IConfiguration configuration;
 
-        public AccountController(IUserHelper userHelper, IConfiguration configuration)
+        public AccountController(IUserHelper userHelper, ICountryRepository countryRepository, IConfiguration configuration)
         {
             this.configuration = configuration;
             this.userHelper = userHelper;
+            this.countryRepository = countryRepository;
         }
 
         
         
-
-
         public IActionResult Login()
         {
             if (this.User.Identity.IsAuthenticated)
@@ -73,7 +74,14 @@ namespace Shop.web.Controllers
 
         public IActionResult Register()
         {
-            return this.View();
+            var model = new RegisterNewUserViewModel
+            {
+                Countries = this.countryRepository.GetComboCountries(),
+                Cities = this.countryRepository.GetComboCities(0)
+            };
+
+
+            return this.View(model);
         }
 
 
@@ -86,12 +94,19 @@ namespace Shop.web.Controllers
                 var user = await this.userHelper.GetUserByEmailAsync(model.Username);
                 if (user == null)
                 {
+                    var city = await this.countryRepository.GetCityAsync(model.CityId);
+
                     user = new User
                     {
                         FirstName = model.FirstName,
                         LastName = model.LastName,
                         Email = model.Username,
-                        UserName = model.Username
+                        UserName = model.Username,
+                        Address = model.Address,
+                        PhoneNumber = model.PhoneNumber,
+                        CityId = model.CityId,
+                        City = city
+
                     };
 
                     var result = await this.userHelper.AddUserAsync(user, model.Password);
@@ -245,6 +260,12 @@ namespace Shop.web.Controllers
             return this.BadRequest();
         }
 
+
+
+        public IActionResult NotAuthorized()
+        {
+            return this.View();
+        }
 
 
     }

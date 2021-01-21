@@ -7,7 +7,7 @@
   "parameters": {
     "resourceGroupName": {
       "type": "string",
-      "defaultValue": "learn-b5a7f5ab-4e1b-4c6b-b9f3-e8bba7164fa9",
+      "defaultValue": "learn-439e2764-4e0e-459f-95f2-176ae5183327",
       "metadata": {
         "description": "Name of the resource group for the resource. It is recommended to put resources under same resource group for better tracking."
       }
@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "shopweb20",
+      "defaultValue": "shopweb2020",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }

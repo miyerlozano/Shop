@@ -2,6 +2,7 @@
 namespace Shop.web.Data
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Identity;
@@ -28,6 +29,23 @@ namespace Shop.web.Data
             await this.userHelper.CheckRoleAsync("Admin");
             await this.userHelper.CheckRoleAsync("Customer");
 
+            if (!this.context.Countries.Any())
+            {
+                var cities = new List<City>();
+                cities.Add(new City { Name = "Medellín" });
+                cities.Add(new City { Name = "Bogotá" });
+                cities.Add(new City { Name = "Calí" });
+
+                this.context.Countries.Add(new Country
+                {
+                    Cities = cities,
+                    Name = "Colombia"
+                });
+
+                await this.context.SaveChangesAsync();
+            }
+
+
 
             var user = await this.userHelper.GetUserByEmailAsync("mlozanos@gmail.com");
             if (user == null)
@@ -38,7 +56,11 @@ namespace Shop.web.Data
                     LastName = "Lozano",
                     Email = "mlozanos@gmail.com",
                     UserName = "mlozanos@gmail.com",
-                    PhoneNumber= "312456789"
+                    PhoneNumber= "312456789",
+                    Address = "Calle Luna Calle Sol",
+                    CityId = this.context.Countries.FirstOrDefault().Cities.FirstOrDefault().Id,
+                    City = this.context.Countries.FirstOrDefault().Cities.FirstOrDefault()
+
                 };
 
                 var result = await this.userHelper.AddUserAsync(user, "123456");

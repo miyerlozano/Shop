@@ -4,7 +4,7 @@
   "parameters": {
     "resourceGroupName": {
       "type": "string",
-      "defaultValue": "learn-b5a7f5ab-4e1b-4c6b-b9f3-e8bba7164fa9",
+      "defaultValue": "learn-439e2764-4e0e-459f-95f2-176ae5183327",
       "metadata": {
         "_parameterType": "resourceGroup",
         "description": "Name of the resource group for the resource. It is recommended to put resources under same resource group for better tracking."
@@ -51,7 +51,7 @@
             {
               "kind": "v12.0",
               "location": "[parameters('resourceLocation')]",
-              "name": "shopwebdbserver15",
+              "name": "shopwebdbserver2020",
               "type": "Microsoft.Sql/servers",
               "apiVersion": "2017-10-01-preview"
             },
@@ -63,11 +63,11 @@
               },
               "kind": "v12.0,user",
               "location": "[parameters('resourceLocation')]",
-              "name": "shopwebdbserver15/Shop.web_db",
+              "name": "shopwebdbserver2020/Shop.web_db",
               "type": "Microsoft.Sql/servers/databases",
               "apiVersion": "2017-10-01-preview",
               "dependsOn": [
-                "shopwebdbserver15"
+                "shopwebdbserver2020"
               ]
             }
           ]
