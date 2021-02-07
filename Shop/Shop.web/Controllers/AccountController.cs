@@ -16,6 +16,11 @@ using System.Threading.Tasks;
 
 namespace Shop.web.Controllers
 {
+
+    
+ 
+
+
     public class AccountController:Controller
     {
         private readonly IUserHelper userHelper;
@@ -266,6 +271,14 @@ namespace Shop.web.Controllers
         {
             return this.View();
         }
+
+        
+        public async Task<JsonResult> GetCitiesAsync(int countryId)
+        {
+            var country = await this.countryRepository.GetCountryWithCitiesAsync(countryId);
+            return this.Json(country.Cities.OrderBy(c => c.Name));
+        }
+
 
 
     }
